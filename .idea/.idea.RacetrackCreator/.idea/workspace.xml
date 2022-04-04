@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88b935a9-1065-4bc2-bbe6-cd67222a95fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utils.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/Bezier.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/Bezier.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,7 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1648932191340</updated>
       <workItem from="1648932200879" duration="1000" />
-      <workItem from="1648932911680" duration="1641000" />
+      <workItem from="1648932911680" duration="1722000" />
+      <workItem from="1649060796462" duration="4645000" />
     </task>
     <servers />
   </component>
