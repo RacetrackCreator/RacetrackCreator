@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Managers;
 using UnityEngine;
 using Utils;
 
@@ -7,38 +8,44 @@ namespace Networks.Road
     
     public class Segment
     {
-        private const int BEZIER_POINTS = 10;
-        private Node start;
-        private Node end;
+        private const int BezierPoints = 10;
+        private readonly int _start;
+        private readonly int _end;
+        
+        private Node Start => NodeManager.Instance.Get(_start);
+
+
+        private Node End => NodeManager.Instance.Get(_end);
+
         private Vector3 control;
 
-        public Segment(Node start, Node end, Vector3 control)
+        public Segment(int start, int end, Vector3 control)
         {
-            this.start = start;
-            this.end = end;
+            this._start = start;
+            this._end = end;
             this.control = control;
         }
 
         public Mesh BuildMesh()
         {
             Mesh m = new Mesh();
-            Vector3 startLeftOff = start.leftEnd - start.pos;
-            Vector3 endLeftOff = end.leftEnd - end.pos;
+            Vector3 startLeftOff = Start.leftEnd - Start.pos;
+            Vector3 endLeftOff = End.leftEnd - End.pos;
             Vector3 leftOff = (startLeftOff + endLeftOff) / 2;
-            Bezier left = new Bezier(start.leftEnd, leftOff + control, end.leftEnd);
+            Bezier left = new Bezier(Start.leftEnd, leftOff + control, End.leftEnd);
             
-            Vector3 startRightOff = start.rightEnd - start.pos;
-            Vector3 endRightOff = end.rightEnd - end.pos;
+            Vector3 startRightOff = Start.rightEnd - Start.pos;
+            Vector3 endRightOff = End.rightEnd - End.pos;
             Vector3 rightOff = (startRightOff + endRightOff) / 2;
-            Bezier right = new Bezier(start.rightEnd, rightOff + control, end.rightEnd);
+            Bezier right = new Bezier(Start.rightEnd, rightOff + control, End.rightEnd);
 
-            int[] triangles = new int[(BEZIER_POINTS - 1) * 6];
-            Vector3[] vertices = new Vector3[BEZIER_POINTS * 2];
+            int[] triangles = new int[(BezierPoints - 1) * 6];
+            Vector3[] vertices = new Vector3[BezierPoints * 2];
             
-            for (int i = 0, trianglePos=0; i < BEZIER_POINTS; i++)
+            for (int i = 0, trianglePos=0; i < BezierPoints; i++)
             {
-                float t = i / ((float) BEZIER_POINTS - 1);
-                int ii = i + BEZIER_POINTS;
+                float t = i / ((float) BezierPoints - 1);
+                int ii = i + BezierPoints;
                 vertices[i] = left.GetIntermediate(t);
                 vertices[ii] = right.GetIntermediate(t);
                 if (i != 0)
@@ -50,7 +57,7 @@ namespace Networks.Road
                     triangles[trianglePos] = i;
                     trianglePos++;
                 }
-                if (i != BEZIER_POINTS - 1)
+                if (i != BezierPoints - 1)
                 {
                     triangles[trianglePos] = i;
                     trianglePos++;

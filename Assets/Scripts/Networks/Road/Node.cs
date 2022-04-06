@@ -7,16 +7,12 @@ namespace Networks.Road
     {
         public Vector3 leftEnd;
         public Vector3 rightEnd;
-        private int id;
         public Vector3 pos => (leftEnd + rightEnd) / 2;
-        
-        public int ID => id;
 
-        public Node(Vector3 leftEnd, Vector3 rightEnd, int id)
+        public Node(Vector3 leftEnd, Vector3 rightEnd)
         {
             this.leftEnd = leftEnd;
             this.rightEnd = rightEnd;
-            this.id = id;
         }
     }
 }
