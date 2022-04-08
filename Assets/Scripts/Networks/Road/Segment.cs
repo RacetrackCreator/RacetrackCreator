@@ -16,6 +16,7 @@ namespace Networks.Road
 
 
         private Node End => NodeManager.Instance.Get(_end);
+        public Vector3 Pos => Start.pos;
 
         private Vector3 control;
 
@@ -32,12 +33,12 @@ namespace Networks.Road
             Vector3 startLeftOff = Start.leftEnd - Start.pos;
             Vector3 endLeftOff = End.leftEnd - End.pos;
             Vector3 leftOff = (startLeftOff + endLeftOff) / 2;
-            Bezier left = new Bezier(Start.leftEnd, leftOff + control, End.leftEnd);
+            Bezier left = new Bezier(Start.leftEnd - Pos, leftOff + control - Pos, End.leftEnd - Pos);
             
             Vector3 startRightOff = Start.rightEnd - Start.pos;
             Vector3 endRightOff = End.rightEnd - End.pos;
             Vector3 rightOff = (startRightOff + endRightOff) / 2;
-            Bezier right = new Bezier(Start.rightEnd, rightOff + control, End.rightEnd);
+            Bezier right = new Bezier(Start.rightEnd - Pos, rightOff + control - Pos, End.rightEnd - Pos);
 
             int[] triangles = new int[(BezierPoints - 1) * 6];
             Vector3[] vertices = new Vector3[BezierPoints * 2];

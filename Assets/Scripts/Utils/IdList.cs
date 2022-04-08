@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Utils
@@ -6,7 +7,10 @@ namespace Utils
     {
         private Dictionary<int, T> elements;
         private List<int> holes;
-        
+
+        public IEnumerable<int> Keys => elements.Keys;
+        public IEnumerable<T> Values => elements.Values;
+
         public IdList()
         {
             holes = new List<int>();
