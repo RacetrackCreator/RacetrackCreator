@@ -20,6 +20,10 @@ namespace Networks.Road
 
         private Vector3 control;
 
+        private GameObject _segmentObject = null;
+
+        public GameObject SegmentObject => _segmentObject;
+
         public Segment(int start, int end, Vector3 control)
         {
             this._start = start;
@@ -72,6 +76,29 @@ namespace Networks.Road
             m.vertices = vertices;
             m.triangles = triangles;
             return m;
+        }
+
+
+        public void CreateGameObject(Material m)
+        {
+            GameObject g = new GameObject();
+            MeshRenderer renderer = g.AddComponent<MeshRenderer>();
+            renderer.material = m;
+            g.AddComponent<MeshFilter>();
+            _segmentObject = g;
+            UpdateGameObject();
+        }
+
+        public void UpdateGameObject()
+        {
+            _segmentObject.GetComponent<MeshFilter>().mesh = BuildMesh();
+            _segmentObject.transform.Translate(Pos, Space.World);
+        }
+
+        public void DestroyGameObject()
+        {
+            Object.Destroy(_segmentObject);
+            _segmentObject = null;
         }
     }
 }

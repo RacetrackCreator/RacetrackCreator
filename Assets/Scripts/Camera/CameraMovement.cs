@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed, sensitivity;
+    public float speed, rotationSpeed;
 
     private float xRotation = 0f, yRotation = 0f;
     private Camera cam;
@@ -52,13 +52,16 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
             transform.Translate(new Vector3(0, -speed * Time.deltaTime), Space.World);
 
-        // float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        // float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-        //
-        // yRotation += mouseX;
-        // xRotation -= mouseY;
-        // xRotation = Mathf.Clamp(xRotation, -90, 90);
-        //
-        // cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
+        if (Input.GetKey(KeyCode.F))
+            xRotation += rotationSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.R))
+            xRotation -= rotationSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.E))
+            yRotation += rotationSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.Q))
+            yRotation -= rotationSpeed * Time.deltaTime;
+        
+        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }
 }

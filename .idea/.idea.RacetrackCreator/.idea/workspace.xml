@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88b935a9-1065-4bc2-bbe6-cd67222a95fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentObject.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +27,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/juanm/projects/RacetrackCreator/Assets/Scripts/Camera/CameraMovement.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,6 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -71,7 +78,9 @@
       <updated>1648932191340</updated>
       <workItem from="1648932200879" duration="1000" />
       <workItem from="1648932911680" duration="1722000" />
-      <workItem from="1649060796462" duration="4645000" />
+      <workItem from="1649060796462" duration="4770000" />
+      <workItem from="1649590688642" duration="281000" />
+      <workItem from="1649686871673" duration="2391000" />
     </task>
     <servers />
   </component>

@@ -7,7 +7,6 @@ namespace Managers
     {
         Selecting,
         ControlPoint,
-        
     }
     
     public class ModeManager : MonoBehaviour
@@ -26,17 +25,23 @@ namespace Managers
             int? closest = NodeManager.GetClosestNode(Input.mousePosition, out float d);
             if (closest != null)
             {
-                if (d < snapDistance) {
+                if (d < snapDistance)
+                {
                     _sphere.SetActive(true);
                     int a = (int) closest;
                     Vector3 pos = NodeManager.Instance.Get(a).pos;
                     _sphere.transform.position = pos;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        // TODO
+                    }
                 }
                 else
                 {
                     _sphere.SetActive(false);
                 }
             }
+            
         }
     }
 }
