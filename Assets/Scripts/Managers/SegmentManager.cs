@@ -19,7 +19,11 @@ namespace Managers
         {
             Segment s = new Segment(start, end, control);
             s.CreateGameObject(m);
-            return Instance.segments.Push(s);
+            int id = Instance.segments.Push(s);
+            s.SegmentObject.name = "Segment " + id;
+            NodeManager.Instance.Get(start).ConnectSegment(id);
+            NodeManager.Instance.Get(end).ConnectSegment(id);
+            return id;
         }
 
         public static Segment Get(int i)
@@ -29,7 +33,10 @@ namespace Managers
 
         public static void Remove(int i)
         {
-            Instance.segments.Remove(i).DestroyGameObject();
+            Segment s = Instance.segments.Remove(i);
+            s.DestroyGameObject();
+            NodeManager.Instance.Get(s.StartId).RemoveSegment(i);
+            NodeManager.Instance.Get(s.EndId).RemoveSegment(i);
         }
     }
 }

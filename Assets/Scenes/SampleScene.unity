@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4696fb17ee7e4c9688a0721fcf5a9be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segmentMaterial: {fileID: 2100000, guid: b17d1c6c19399794088ac7ea2c962e52, type: 2}
   snapDistance: 50
 --- !u!4 &1897471184
 Transform:

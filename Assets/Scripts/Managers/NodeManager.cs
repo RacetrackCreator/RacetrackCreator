@@ -25,7 +25,7 @@ namespace Managers
             float closestDist = float.MaxValue;
             foreach (int i in Instance.Keys)
             {
-                Vector2 p = Camera.main!.WorldToScreenPoint(Instance.Get(i).pos);
+                Vector2 p = Camera.main!.WorldToScreenPoint(Instance.Get(i).Pos);
                 float d = Vector2.Distance(p, pos);
                 if (d < closestDist)
                 {

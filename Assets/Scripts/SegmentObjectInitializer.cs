@@ -13,7 +13,7 @@ public class SegmentObjectInitializer : MonoBehaviour
     {
         int start = NodeManager.Instance.Push(new Node(new Vector3(-1, 0, -1), new Vector3(-1, 0, 1)));
         int end = NodeManager.Instance.Push(new Node(new Vector3(1, 0, -1), new Vector3(1, 0, 1)));
-        _s = SegmentManager.Add(start, end, new Vector3(0, -1, 2), m);
+        _s = SegmentManager.Add(start, end, new Vector3(0, -2, 2), m);
     }
 
 

@@ -9,40 +9,38 @@ namespace Networks.Road
     public class Segment
     {
         private const int BezierPoints = 10;
-        private readonly int _start;
-        private readonly int _end;
+        public readonly int StartId;
+        public readonly int EndId;
         
-        private Node Start => NodeManager.Instance.Get(_start);
+        private Node Start => NodeManager.Instance.Get(StartId);
+        private Node End => NodeManager.Instance.Get(EndId);
+        public Vector3 Pos => Start.Pos;
 
-
-        private Node End => NodeManager.Instance.Get(_end);
-        public Vector3 Pos => Start.pos;
-
-        private Vector3 control;
+        public readonly Vector3 Control;
 
         private GameObject _segmentObject = null;
 
         public GameObject SegmentObject => _segmentObject;
 
-        public Segment(int start, int end, Vector3 control)
+        public Segment(int startId, int endId, Vector3 control)
         {
-            this._start = start;
-            this._end = end;
-            this.control = control;
+            this.StartId = startId;
+            this.EndId = endId;
+            this.Control = control;
         }
 
         public Mesh BuildMesh()
         {
             Mesh m = new Mesh();
-            Vector3 startLeftOff = Start.leftEnd - Start.pos;
-            Vector3 endLeftOff = End.leftEnd - End.pos;
+            Vector3 startLeftOff = Start.LeftEnd - Start.Pos;
+            Vector3 endLeftOff = End.LeftEnd - End.Pos;
             Vector3 leftOff = (startLeftOff + endLeftOff) / 2;
-            Bezier left = new Bezier(Start.leftEnd - Pos, leftOff + control - Pos, End.leftEnd - Pos);
+            Bezier left = new Bezier(Start.LeftEnd - Pos, leftOff + Control - Pos, End.LeftEnd - Pos);
             
-            Vector3 startRightOff = Start.rightEnd - Start.pos;
-            Vector3 endRightOff = End.rightEnd - End.pos;
+            Vector3 startRightOff = Start.RightEnd - Start.Pos;
+            Vector3 endRightOff = End.RightEnd - End.Pos;
             Vector3 rightOff = (startRightOff + endRightOff) / 2;
-            Bezier right = new Bezier(Start.rightEnd - Pos, rightOff + control - Pos, End.rightEnd - Pos);
+            Bezier right = new Bezier(Start.RightEnd - Pos, rightOff + Control - Pos, End.RightEnd - Pos);
 
             int[] triangles = new int[(BezierPoints - 1) * 6];
             Vector3[] vertices = new Vector3[BezierPoints * 2];
