@@ -19,6 +19,7 @@ namespace Networks.Road
         public readonly Vector3 Control;
 
         private GameObject _segmentObject = null;
+        private static readonly int Color1 = Shader.PropertyToID("_Color");
 
         public GameObject SegmentObject => _segmentObject;
 
@@ -85,6 +86,12 @@ namespace Networks.Road
             g.AddComponent<MeshFilter>();
             _segmentObject = g;
             UpdateGameObject();
+            
+            // Control ball
+            GameObject right = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            right.transform.localScale *= 0.5f;
+            right.transform.position = Control;
+            right.GetComponent<MeshRenderer>().material.SetColor(Color1, Color.yellow);
         }
 
         public void UpdateGameObject()

@@ -4,11 +4,8 @@
     <list default="true" id="88b935a9-1065-4bc2-bbe6-cd67222a95fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/NodeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/NodeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Node.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +75,8 @@
       <workItem from="1649060796462" duration="4770000" />
       <workItem from="1649590688642" duration="281000" />
       <workItem from="1649686871673" duration="3021000" />
-      <workItem from="1649771268620" duration="7514000" />
+      <workItem from="1649771268620" duration="7895000" />
+      <workItem from="1649861746307" duration="1293000" />
     </task>
     <task id="LOCAL-00001" summary="Move things around for CameraMovement &amp; segments">
       <created>1649689577855</created>
@@ -87,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649689577855</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add segment builder">
+      <created>1649804470551</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649804470551</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +116,7 @@
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Move things around for CameraMovement &amp; segments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move things around for CameraMovement &amp; segments" />
+    <MESSAGE value="Add segment builder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add segment builder" />
   </component>
 </project>

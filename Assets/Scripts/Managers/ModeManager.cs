@@ -61,10 +61,21 @@ namespace Managers
                     _sphere.transform.position = c;
                     if (Input.GetMouseButtonDown(0))
                     {
+                        
+                        
                         Vector3 right = end - (start.RightEnd - start.Pos).magnitude * Vector3.Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
                         Vector3 left = end + (start.LeftEnd - start.Pos).magnitude * Vector3.Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
                         int endId = NodeManager.Instance.Push(new Node(left, right));
-                        SegmentManager.Add(nodeStartNotNull, endId, c, segmentMaterial);
+                        // If building backwards, dont build
+                        if (prev.StartId == nodeStartNotNull)
+                        {
+                            SegmentManager.Add(endId, nodeStartNotNull, c, segmentMaterial);
+                        }
+                        else
+                        {
+                            SegmentManager.Add(nodeStartNotNull, endId, c, segmentMaterial);
+                        }
+
                         _nodeStart = 0;
                         _mode = Mode.Selecting;
                     }
@@ -75,6 +86,7 @@ namespace Managers
         private static Vector3 CalculateControlPoint(Vector3 start, Vector2 mouseEnd, Vector3 prevControlPoint,
             Vector3 nodeEdge, out Vector3 end)
         {
+            // Todo: prevent backwards segments
             Vector3 a = start - prevControlPoint;
             Plane pi = new Plane(start, prevControlPoint, nodeEdge);
             Ray r = Camera.main.ScreenPointToRay(mouseEnd);
