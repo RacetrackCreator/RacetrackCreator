@@ -30,20 +30,29 @@ namespace Networks.Road
             this.Control = control;
         }
 
+        private Vector3 calcX(Vector3 startToEnd, Vector3 endToEnd)
+        {
+            float[] alpha = new[]
+            {
+                Mathf.Deg2Rad * Vector2.Angle(new Vector2(startToEnd.y, startToEnd.z), new Vector2(endToEnd.y, endToEnd.z)),
+                Mathf.Deg2Rad * Vector2.Angle(new Vector2(startToEnd.x, startToEnd.z), new Vector2(endToEnd.x, endToEnd.z)),
+                Mathf.Deg2Rad * Vector2.Angle(new Vector2(startToEnd.x, startToEnd.y), new Vector2(endToEnd.x, endToEnd.y))
+            };
+            return new Vector3(startToEnd.x * Mathf.Tan(alpha[0] / 2),startToEnd.y * Mathf.Tan(alpha[1] / 2),startToEnd.z * Mathf.Tan(alpha[2] / 2));
+        }
+
         public Mesh BuildMesh()
         {
             Mesh m = new Mesh();
-            Vector3 startLeftOff = Start.LeftEnd - Start.Pos;
-            Vector3 endLeftOff = End.LeftEnd - End.Pos;
-            Vector3 leftOff = (startLeftOff + endLeftOff);
-            // Vector3 alphaLeft = new Vector3(Vector3.Angle(new Vector3(startLeftOff.x, 0), new Vector3(endLeftOff.x, 0)), Vector3.Angle(new Vector3(startLeftOff.y, 0), new Vector3(endLeftOff.y, 0)))
-            // Vector3 off = new Vector3(Mathf.Sqrt(startLeftOff.x * startLeftOff.x * (1 + Mathf.Tan())));
-            Bezier left = new Bezier(Start.LeftEnd - Pos, leftOff + Control - Pos, End.LeftEnd - Pos);
+            Vector3 leftStartToEnd = Start.LeftEnd - Start.Pos;
+            Vector3 leftControl = Control + leftStartToEnd + calcX(leftStartToEnd, End.LeftEnd - End.Pos);
             
-            Vector3 startRightOff = Start.RightEnd - Start.Pos;
-            Vector3 endRightOff = End.RightEnd - End.Pos;
-            Vector3 rightOff = (startRightOff + endRightOff);
-            Bezier right = new Bezier(Start.RightEnd - Pos, rightOff + Control - Pos, End.RightEnd - Pos);
+            Bezier left = new Bezier(Start.LeftEnd - Pos, leftControl - Pos, End.LeftEnd - Pos);
+            
+            
+            Vector3 rightStartToEnd = Start.RightEnd - Start.Pos;
+            Vector3 rightControl = Control + rightStartToEnd + calcX(rightStartToEnd, End.RightEnd - End.Pos);
+            Bezier right = new Bezier(Start.RightEnd - Pos, rightControl - Pos, End.RightEnd - Pos);
 
             int[] triangles = new int[(BezierPoints - 1) * 6];
             Vector3[] vertices = new Vector3[BezierPoints * 2];

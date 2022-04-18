@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88b935a9-1065-4bc2-bbe6-cd67222a95fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +82,7 @@
       <workItem from="1649861746307" duration="1945000" />
       <workItem from="1649934278659" duration="1927000" />
       <workItem from="1650283451985" duration="105000" />
+      <workItem from="1650284380960" duration="3786000" />
     </task>
     <task id="LOCAL-00001" summary="Move things around for CameraMovement &amp; segments">
       <created>1649689577855</created>
@@ -104,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649863406696</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update editor">
+      <created>1650284408652</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650284408652</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +138,7 @@
     <MESSAGE value="Move things around for CameraMovement &amp; segments" />
     <MESSAGE value="Add segment builder" />
     <MESSAGE value="Fix segment building &amp; add viz utils" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix segment building &amp; add viz utils" />
+    <MESSAGE value="Update editor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update editor" />
   </component>
 </project>
