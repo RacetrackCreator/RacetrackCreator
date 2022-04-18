@@ -57,34 +57,38 @@ namespace Managers
                     Node start = NodeManager.Instance.Get(nodeStartNotNull);
                     Segment prev = SegmentManager.Get(start.ConnectedSegments[0]);
                     Vector3 c = CalculateControlPoint(start.Pos, Input.mousePosition, prev.Control, start.LeftEnd,
-                        out Vector3 end);
-                    _sphere.transform.position = c;
-                    if (Input.GetMouseButtonDown(0))
+                        out Vector3 end, out bool isInvalid);
+                    if (!isInvalid)
                     {
-                        
-                        
-                        Vector3 right = end - (start.RightEnd - start.Pos).magnitude * Vector3.Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
-                        Vector3 left = end + (start.LeftEnd - start.Pos).magnitude * Vector3.Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
-                        int endId = NodeManager.Instance.Push(new Node(left, right));
-                        // If building backwards, dont build
-                        if (prev.StartId == nodeStartNotNull)
+                        _sphere.transform.position = c;
+                        if (Input.GetMouseButtonDown(0))
                         {
-                            SegmentManager.Add(endId, nodeStartNotNull, c, segmentMaterial);
-                        }
-                        else
-                        {
-                            SegmentManager.Add(nodeStartNotNull, endId, c, segmentMaterial);
-                        }
+                            Vector3 right = end - (start.RightEnd - start.Pos).magnitude * Vector3
+                                .Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
+                            Vector3 left = end + (start.LeftEnd - start.Pos).magnitude * Vector3
+                                .Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
+                            int endId = NodeManager.Instance.Push(new Node(left, right));
+                            // If building backwards, dont build
+                            if (prev.StartId == nodeStartNotNull)
+                            {
+                                SegmentManager.Add(endId, nodeStartNotNull, c, segmentMaterial);
+                            }
+                            else
+                            {
+                                SegmentManager.Add(nodeStartNotNull, endId, c, segmentMaterial);
+                            }
 
-                        _nodeStart = 0;
-                        _mode = Mode.Selecting;
+                            _nodeStart = 0;
+                            _mode = Mode.Selecting;
+                        }
                     }
+
                     break;
             }
         }
 
         private static Vector3 CalculateControlPoint(Vector3 start, Vector2 mouseEnd, Vector3 prevControlPoint,
-            Vector3 nodeEdge, out Vector3 end)
+            Vector3 nodeEdge, out Vector3 end, out bool isNegative)
         {
             // Todo: prevent backwards segments
             Vector3 a = start - prevControlPoint;
@@ -96,7 +100,9 @@ namespace Managers
             Vector3 b = Vector3.Cross(end - start, n);
             float lambda = ((start.x - end.x) / (2 * b.x) - (start.y - end.y) / (2 * b.y)) / (a.y / b.y - a.x / b.x);
             float lambda2 = ((start.x - end.x) / (2 * b.x) - (start.z - end.z) / (2 * b.z)) / (a.z / b.z - a.x / b.x);
-            return start + a * (float.IsInfinity(lambda) || float.IsNaN(lambda) ? lambda2 : lambda);
+            float finalLambda = (float.IsInfinity(lambda) || float.IsNaN(lambda) ? lambda2 : lambda);
+            isNegative = finalLambda <= 0;
+            return start + a * finalLambda;
         }
     }
 }

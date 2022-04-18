@@ -40,5 +40,10 @@ namespace Networks.Road
         {
             _connectedSegments.Remove(s);
         }
+
+        public bool IsFull()
+        {
+            return _connectedSegments.Count > 1;
+        }
     }
 }

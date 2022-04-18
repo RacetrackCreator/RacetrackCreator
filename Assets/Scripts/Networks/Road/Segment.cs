@@ -35,12 +35,14 @@ namespace Networks.Road
             Mesh m = new Mesh();
             Vector3 startLeftOff = Start.LeftEnd - Start.Pos;
             Vector3 endLeftOff = End.LeftEnd - End.Pos;
-            Vector3 leftOff = (startLeftOff + endLeftOff) / 2;
+            Vector3 leftOff = (startLeftOff + endLeftOff);
+            // Vector3 alphaLeft = new Vector3(Vector3.Angle(new Vector3(startLeftOff.x, 0), new Vector3(endLeftOff.x, 0)), Vector3.Angle(new Vector3(startLeftOff.y, 0), new Vector3(endLeftOff.y, 0)))
+            // Vector3 off = new Vector3(Mathf.Sqrt(startLeftOff.x * startLeftOff.x * (1 + Mathf.Tan())));
             Bezier left = new Bezier(Start.LeftEnd - Pos, leftOff + Control - Pos, End.LeftEnd - Pos);
             
             Vector3 startRightOff = Start.RightEnd - Start.Pos;
             Vector3 endRightOff = End.RightEnd - End.Pos;
-            Vector3 rightOff = (startRightOff + endRightOff) / 2;
+            Vector3 rightOff = (startRightOff + endRightOff);
             Bezier right = new Bezier(Start.RightEnd - Pos, rightOff + Control - Pos, End.RightEnd - Pos);
 
             int[] triangles = new int[(BezierPoints - 1) * 6];

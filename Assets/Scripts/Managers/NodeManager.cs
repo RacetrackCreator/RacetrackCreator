@@ -25,9 +25,10 @@ namespace Managers
             float closestDist = float.MaxValue;
             foreach (int i in Instance.Keys)
             {
-                Vector2 p = Camera.main!.WorldToScreenPoint(Instance.Get(i).Pos);
+                Node n = Instance.Get(i);
+                Vector2 p = Camera.main!.WorldToScreenPoint(n.Pos);
                 float d = Vector2.Distance(p, pos);
-                if (d < closestDist)
+                if (d < closestDist && !n.IsFull())
                 {
                     closest = i;
                     closestDist = d;
