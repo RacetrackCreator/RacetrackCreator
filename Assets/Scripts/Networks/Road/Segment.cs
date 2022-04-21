@@ -42,8 +42,10 @@ namespace Networks.Road
         private Vector3 CalcOffsetControl(Vector3 start, Vector3 startEnd, Vector3 end, Vector3 endEnd,
             Vector3 control)
         {
+           
             Vector3 v = control - start;
             Vector3 u = control - end;
+            if (v.normalized == u.normalized || v.normalized == -u.normalized) return (startEnd + endEnd) / 2;
             float lambda = CalcLambda(new Vector2(startEnd.x, startEnd.y), new Vector2(endEnd.x, endEnd.y),
                 new Vector2(v.x, v.y), new Vector2(u.x, u.y)) ??
                            CalcLambda(new Vector2(startEnd.x, startEnd.z), new Vector2(endEnd.x, endEnd.z),
@@ -56,18 +58,12 @@ namespace Networks.Road
         public Mesh BuildMesh()
         {
             Mesh m = new Mesh();
-            Vector3 startLeftOff = Start.LeftEnd - Start.Pos;
-            Vector3 endLeftOff = End.LeftEnd - End.Pos;
-            Vector3 leftOff = (startLeftOff + endLeftOff);
-            // Vector3 alphaLeft = new Vector3(Vector3.Angle(new Vector3(startLeftOff.x, 0), new Vector3(endLeftOff.x, 0)), Vector3.Angle(new Vector3(startLeftOff.y, 0), new Vector3(endLeftOff.y, 0)))
-            // Vector3 off = new Vector3(Mathf.Sqrt(startLeftOff.x * startLeftOff.x * (1 + Mathf.Tan())));
-            Bezier left = new Bezier(Start.LeftEnd - Pos, leftOff + Control - Pos, End.LeftEnd - Pos);
+            Bezier left = new Bezier(Start.LeftEnd - Pos, CalcOffsetControl(Start.Pos, Start.LeftEnd, End.Pos, End.LeftEnd, Control) - Pos, End.LeftEnd - Pos);
             
             Vector3 startRightOff = Start.RightEnd - Start.Pos;
             Vector3 endRightOff = End.RightEnd - End.Pos;
             Vector3 rightOff = (startRightOff + endRightOff);
-            Bezier right = new Bezier(Start.RightEnd - Pos, rightOff + Control - Pos, End.RightEnd - Pos);
-
+            Bezier right = new Bezier(Start.RightEnd - Pos, CalcOffsetControl(Start.Pos, Start.RightEnd, End.Pos, End.RightEnd, Control) - Pos, End.RightEnd - Pos);
             int[] triangles = new int[(BezierPoints - 1) * 6];
             Vector3[] vertices = new Vector3[BezierPoints * 2];
             
