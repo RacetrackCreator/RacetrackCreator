@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Managers;
 using UnityEngine;
 using Utils;
+using Object = UnityEngine.Object;
 
 namespace Networks.Road
 {
@@ -28,6 +30,27 @@ namespace Networks.Road
             this.StartId = startId;
             this.EndId = endId;
             this.Control = control;
+        }
+
+        private float? CalcLambda(Vector2 a, Vector2 b, Vector2 v, Vector2 u)
+        {
+            float bottom = (v.y * u.x - v.x * u.y);
+            if (bottom == 0) return null;
+            return (a.x * u.y - b.x*u.y - a.y*u.x + b.y*u.x) / bottom;
+        }
+
+        private Vector3 CalcOffsetControl(Vector3 start, Vector3 startEnd, Vector3 end, Vector3 endEnd,
+            Vector3 control)
+        {
+            Vector3 v = control - start;
+            Vector3 u = control - end;
+            float lambda = CalcLambda(new Vector2(startEnd.x, startEnd.y), new Vector2(endEnd.x, endEnd.y),
+                new Vector2(v.x, v.y), new Vector2(u.x, u.y)) ??
+                           CalcLambda(new Vector2(startEnd.x, startEnd.z), new Vector2(endEnd.x, endEnd.z),
+                               new Vector2(v.x, v.z), new Vector2(u.x, u.z)) ??
+                           CalcLambda(new Vector2(startEnd.y, startEnd.z), new Vector2(endEnd.y, endEnd.z),
+                               new Vector2(v.y, v.z), new Vector2(u.y, u.z)) ?? throw new Exception("Cant calculate control");
+            return startEnd + lambda * v;
         }
 
         public Mesh BuildMesh()
