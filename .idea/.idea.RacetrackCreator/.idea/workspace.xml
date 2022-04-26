@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="88b935a9-1065-4bc2-bbe6-cd67222a95fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RacetrackCreator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ModeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/SegmentManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Networks/Road/Segment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentObjectInitializer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,16 +33,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.0f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\juanm\projects\RacetrackCreator -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\juanm\projects\RacetrackCreator" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -79,6 +89,8 @@
       <workItem from="1649934278659" duration="1927000" />
       <workItem from="1650279012880" duration="140000" />
       <workItem from="1650280294152" duration="384000" />
+      <workItem from="1650708979225" duration="302000" />
+      <workItem from="1650960559534" duration="1148000" />
     </task>
     <task id="LOCAL-00001" summary="Move things around for CameraMovement &amp; segments">
       <created>1649689577855</created>
@@ -108,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650279142729</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Make it work">
+      <created>1650531587900</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650531587900</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +154,7 @@
     <MESSAGE value="Add segment builder" />
     <MESSAGE value="Fix segment building &amp; add viz utils" />
     <MESSAGE value="Move things around, WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move things around, WIP" />
+    <MESSAGE value="Make it work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make it work" />
   </component>
 </project>

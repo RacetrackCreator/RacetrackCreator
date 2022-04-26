@@ -15,9 +15,9 @@ namespace Managers
             }
         }
 
-        public static int Add(int start, int end, Vector3 control, Material m)
+        public static int Add(int start, int end, Vector3 controlLeft, Vector3 controlRight, Material m)
         {
-            Segment s = new Segment(start, end, control);
+            Segment s = new Segment(start, end, controlLeft, controlRight);
             s.CreateGameObject(m);
             int id = Instance.segments.Push(s);
             s.SegmentObject.name = "Segment " + id;

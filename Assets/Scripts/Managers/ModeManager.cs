@@ -56,7 +56,7 @@ namespace Managers
                     int nodeStartNotNull = _nodeStart;
                     Node start = NodeManager.Instance.Get(nodeStartNotNull);
                     Segment prev = SegmentManager.Get(start.ConnectedSegments[0]);
-                    Vector3 c = CalculateControlPoint(start.Pos, Input.mousePosition, prev.Control, start.LeftEnd,
+                    Vector3 c = CalculateControlPointMouse(start.Pos, Input.mousePosition, prev.Control, start.LeftEnd,
                         out Vector3 end, out bool isInvalid);
                     if (!isInvalid)
                     {
@@ -68,14 +68,18 @@ namespace Managers
                             Vector3 left = end + (start.LeftEnd - start.Pos).magnitude * Vector3
                                 .Cross(end - c, new Plane(start.Pos, prev.Control, start.LeftEnd).normal).normalized;
                             int endId = NodeManager.Instance.Push(new Node(left, right));
+                            Vector3 cRight = CalculateControlPoint(start.RightEnd, right, prev.ControlRight, start.Pos,
+                                out _);
+                            Vector3 cLeft = CalculateControlPoint(start.LeftEnd, left, prev.ControlLeft, start.Pos,
+                                out _);
                             // If building backwards, dont build
                             if (prev.StartId == nodeStartNotNull)
                             {
-                                SegmentManager.Add(endId, nodeStartNotNull, c, segmentMaterial);
+                                SegmentManager.Add(endId, nodeStartNotNull, cLeft, cRight, segmentMaterial);
                             }
                             else
                             {
-                                SegmentManager.Add(nodeStartNotNull, endId, c, segmentMaterial);
+                                SegmentManager.Add(nodeStartNotNull, endId, cLeft, cRight, segmentMaterial);
                             }
 
                             _nodeStart = 0;
@@ -87,15 +91,22 @@ namespace Managers
             }
         }
 
-        private static Vector3 CalculateControlPoint(Vector3 start, Vector2 mouseEnd, Vector3 prevControlPoint,
+        private static Vector3 CalculateControlPointMouse(Vector3 start, Vector2 mouseEnd, Vector3 prevControlPoint,
             Vector3 nodeEdge, out Vector3 end, out bool isNegative)
         {
-            // Todo: prevent backwards segments
-            Vector3 a = start - prevControlPoint;
             Plane pi = new Plane(start, prevControlPoint, nodeEdge);
             Ray r = Camera.main.ScreenPointToRay(mouseEnd);
             pi.Raycast(r, out float t);
             end = r.GetPoint(t);
+            return CalculateControlPoint(start, end, prevControlPoint, nodeEdge, out isNegative);
+        }
+        
+        private static Vector3 CalculateControlPoint(Vector3 start, Vector3 end, Vector3 prevControlPoint,
+            Vector3 nodeEdge, out bool isNegative)
+        {
+            // Todo: prevent backwards segments
+            Vector3 a = start - prevControlPoint;
+            Plane pi = new Plane(start, prevControlPoint, nodeEdge);
             Vector3 n = pi.normal;
             Vector3 b = Vector3.Cross(end - start, n);
             float lambda = ((start.x - end.x) / (2 * b.x) - (start.y - end.y) / (2 * b.y)) / (a.y / b.y - a.x / b.x);

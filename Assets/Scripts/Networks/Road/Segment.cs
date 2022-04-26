@@ -18,18 +18,22 @@ namespace Networks.Road
         private Node End => NodeManager.Instance.Get(EndId);
         public Vector3 Pos => Start.Pos;
 
-        public readonly Vector3 Control;
+        public readonly Vector3 ControlLeft;
+        public readonly Vector3 ControlRight;
+        
+        public Vector3 Control => (ControlLeft + ControlRight)/2;
 
         private GameObject _segmentObject = null;
         private static readonly int Color1 = Shader.PropertyToID("_Color");
 
         public GameObject SegmentObject => _segmentObject;
 
-        public Segment(int startId, int endId, Vector3 control)
+        public Segment(int startId, int endId, Vector3 controlLeft, Vector3 controlRight)
         {
             this.StartId = startId;
             this.EndId = endId;
-            this.Control = control;
+            this.ControlLeft = controlLeft;
+            this.ControlRight = controlRight;
         }
 
         private float? CalcLambda(Vector2 a, Vector2 b, Vector2 v, Vector2 u)
@@ -58,12 +62,8 @@ namespace Networks.Road
         public Mesh BuildMesh()
         {
             Mesh m = new Mesh();
-            Bezier left = new Bezier(Start.LeftEnd - Pos, CalcOffsetControl(Start.Pos, Start.LeftEnd, End.Pos, End.LeftEnd, Control) - Pos, End.LeftEnd - Pos);
-            
-            Vector3 startRightOff = Start.RightEnd - Start.Pos;
-            Vector3 endRightOff = End.RightEnd - End.Pos;
-            Vector3 rightOff = (startRightOff + endRightOff);
-            Bezier right = new Bezier(Start.RightEnd - Pos, CalcOffsetControl(Start.Pos, Start.RightEnd, End.Pos, End.RightEnd, Control) - Pos, End.RightEnd - Pos);
+            Bezier left = new Bezier(Start.LeftEnd - Pos, ControlLeft - Pos, End.LeftEnd - Pos);
+            Bezier right = new Bezier(Start.RightEnd - Pos, ControlRight - Pos, End.RightEnd - Pos);
             int[] triangles = new int[(BezierPoints - 1) * 6];
             Vector3[] vertices = new Vector3[BezierPoints * 2];
             
@@ -110,9 +110,13 @@ namespace Networks.Road
             
             // Control ball
             GameObject right = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject left = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             right.transform.localScale *= 0.5f;
-            right.transform.position = Control;
-            right.GetComponent<MeshRenderer>().material.SetColor(Color1, Color.yellow);
+            left.transform.localScale *= 0.5f;
+            right.transform.position = ControlRight;
+            left.transform.position = ControlLeft;
+            right.GetComponent<MeshRenderer>().material.SetColor(Color1, Color.red);
+            left.GetComponent<MeshRenderer>().material.SetColor(Color1, Color.green);
         }
 
         public void UpdateGameObject()
