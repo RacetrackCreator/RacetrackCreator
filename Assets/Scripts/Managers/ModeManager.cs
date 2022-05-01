@@ -1,13 +1,14 @@
 using System;
 using Networks.Road;
 using UnityEngine;
+using Utils;
 
 namespace Managers
 {
     public enum Mode
     {
         Selecting,
-        NewSegment
+        NewSegment,
     }
     
     public class ModeManager : MonoBehaviour
@@ -30,24 +31,31 @@ namespace Managers
             switch (_mode)
             {
                 case Mode.Selecting:
-                    int? closest = NodeManager.GetClosestNode(Input.mousePosition, out float d);
-                    if (closest != null)
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
-                        if (d < snapDistance)
+                        // Calc
+                    }
+                    else
+                    {
+                        int? closest = NodeManager.GetClosestNode(Input.mousePosition, out float d);
+                        if (closest != null)
                         {
-                            _sphere.SetActive(true);
-                            int a = (int) closest;
-                            Vector3 pos = NodeManager.Instance.Get(a).Pos;
-                            _sphere.transform.position = pos;
-                            if (Input.GetMouseButtonDown(0))
+                            if (d < snapDistance)
                             {
-                                _nodeStart = a;
-                                _mode = Mode.NewSegment;
+                                _sphere.SetActive(true);
+                                int a = (int) closest;
+                                Vector3 pos = NodeManager.Instance.Get(a).Pos;
+                                _sphere.transform.position = pos;
+                                if (Input.GetMouseButtonDown(0))
+                                {
+                                    _nodeStart = a;
+                                    _mode = Mode.NewSegment;
+                                }
                             }
-                        }
-                        else
-                        {
-                            _sphere.SetActive(false);
+                            else
+                            {
+                                _sphere.SetActive(false);
+                            }
                         }
                     }
 
@@ -114,6 +122,20 @@ namespace Managers
             float finalLambda = (float.IsInfinity(lambda) || float.IsNaN(lambda) ? lambda2 : lambda);
             isNegative = finalLambda <= 0;
             return start + a * finalLambda;
+        }
+
+        private void OnDrawGizmos()
+        {
+            GameObject puntero = GameObject.Find("Puntero");
+
+            Segment s = SegmentManager.Get(0);
+            Bezier b = new Bezier(NodeManager.Instance.Get(s.StartId).LeftEnd, s.ControlLeft, NodeManager.Instance.Get(s.EndId).LeftEnd);
+            
+            b.GetClosestPoints(puntero.transform.position, out Vector3 sol1, out Vector3 sol2, out Vector3 sol3);
+            
+            Gizmos.DrawSphere(sol1, 1);
+            Gizmos.DrawSphere(sol2, 1);
+            Gizmos.DrawSphere(sol3, 1);
         }
     }
 }
